@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>socket io</title>
+    <script src="/javascripts/socket.io.js"></script>
+</head>
+<style>
+*{
+    margin:0;
+    padding: 0;
+}
+.footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: -webkit-box;
+    -webkit-box-align:end;
+    padding: 10px;
+    background: #fff;
+    border-top: 1px solid #cccccc;
+}
+#textContent{
+    -webkit-box-flex: 1;
+    min-height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #cccccc;
+    padding: 0 10px;
+}
+button{
+    background: #1abbcf;
+    height: 40px;
+    line-height: 40px;
+    border: none;
+    outline: none;
+    color: #fff;
+    width: 60px;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
+.res-box{
+    display: -webkit-box;
+    -webkit-box-pack: end;
+    text-align: justify;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    font-size: 16px;
+    padding:5px; 
+
+}
+.res-box .head-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: block;
+}
+.me-txt{
+    -webkit-box-flex: 1;
+    padding-left: 80px;
+    padding-right: 15px;
+}
+.res-txt{
+    -webkit-box-flex: 1;
+    padding-right: 80px;
+    padding-left: 15px;
+}
+.name{
+    display: -webkit-box;
+    -webkit-box-pack: start;
+    color: #828282;
+    font-size: 14px;
+}
+.me-name{
+    display: -webkit-box;
+    -webkit-box-pack: end;
+    color: #828282;
+    font-size: 14px;
+}
+.txt1{
+    display: -webkit-box;
+    -webkit-box-pack: end;
+}
+#content{
+    padding-bottom: 60px;
+}
+</style>
+
+<body>
+    <div>
+        <div id="content">
+        </div>
+    </div>
+    <div class="footer">
+        <div id="textContent" contenteditable="true" type="text"></div>
+        <button id="send">发送</button>
+    </div>
+    <script>
+    var urlArr = window.location.href.split("/");
+    var url = urlArr[0] + "//" +urlArr[2]
+    var socket = io.connect(url);
+    var userName = "访客某某";
+    socket.on('connect', function() {
+        userName = prompt("请输入你的姓名?") || userName;
+        socket.emit('join', userName);
+    });
+    socket.on('chat', function(user, data) {
+        var resBox = document.createElement('div');
+
+        if (user === userName) {
+            resBox.innerHTML = `<div class="me-txt">
+                                    <p class="me-name">${user}</p>
+                                    <p class="txt1">${data}</p>
+                                </div>
+                                <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504264698520&di=1450de3f9b622ef8286afd9777e68bdf&imgtype=0&src=http%3A%2F%2Falbum.u17i.com%2Fimage%2F2013%2F01%2F45%2F24%2F1007248_64240_783621_YxfA.jpg" alt="" class="head-img">`; 
+        } else {
+            resBox.innerHTML = `<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1504261899370&di=aa9338df2ef108f4fe2d687ea49e0f3b&imgtype=0&src=http%3A%2F%2Fimg5.duitang.com%2Fuploads%2Fitem%2F201410%2F09%2F20141009132418_uhffi.jpeg" alt="" class="head-img">
+                                <div class="res-txt">
+                                    <p class="name">${user}</p>
+                                    <p class="txt">${data}</p>
+                                </div>`;
+        }
+        resBox.className = 'res-box';
+        $('#content').appendChild(resBox);
+    });
+
+    $('#send').addEventListener('click', function(target) {
+        var content = $('#textContent').innerHTML;
+        if (content = content.replace(" ", "")) {
+            socket.emit('sendMSG', content);
+            $('#textContent').innerHTML = "";
+        }
+    });
+
+    function $(flag) {
+        return document.querySelector(flag);
+    }
+    </script>
+</body>
+
+</html>

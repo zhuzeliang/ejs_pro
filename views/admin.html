@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="/javascripts/jquery-1.12.1.min.js"></script>
+    <script src="/javascripts/layer/layer.js"></script>
+</head>
+<style>
+.a_btn {
+    margin: 0 10px;
+}
+
+.edit_box {
+    padding: 30px;
+}
+
+.control-label {
+    width: 100px;
+}
+
+.share_box {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: all 1s linear;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+.fixed {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    background: red;
+}
+</style>
+
+<body>
+    <div class="container">
+        <h4>文章管理</h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>文章标题</th>
+                    <th>作者</th>
+                    <th>创建时间</th>
+                    <th>更新时间</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <button class='btn share'>点我</button>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><a class="a_btn" href="#" onclick="editFun();">编辑</a><a class="a_btn" href="#" class="cancel">删除</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- edit layer -->
+    <div class="edit_box" style="display:none;">
+        <form class="" action="/put" method="post" id="form">
+            <div class="form-group form-inline">
+                <label for="" class="control-label">文章标题</label>
+                <input type="text" class="form-control" placeholder="请输入文章标题" name="title">
+            </div>
+            <div class="form-group form-inline">
+                <label for="" class="control-label">作者</label>
+                <input type="text" class="form-control" placeholder="请输入作者" name="auther">
+            </div>
+            <div class="form-group form-inline">
+                <label class="control-label">编辑内容</label>
+                <textarea id="" cols="30" rows="6" class="form-control" placeholder="请输入文章内容" name="content"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="box">
+        <div class="fixed"></div>
+    </div>
+    <div class="edit_box">
+        <form class="" action="/put" method="post" id="form">
+            <div class="form-group form-inline">
+                <label for="" class="control-label">文章标题</label>
+                <input type="text" class="form-control" placeholder="请输入文章标题" name="title">
+            </div>
+            <div class="form-group form-inline">
+                <label for="" class="control-label">作者</label>
+                <input type="text" class="form-control" placeholder="请输入作者" name="auther">
+            </div>
+            <div class="form-group form-inline">
+                <label class="control-label">编辑内容</label>
+                <textarea id="" cols="30" rows="6" class="form-control" placeholder="请输入文章内容" name="content"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="edit_box">
+        <form class="" action="/put" method="post" id="form">
+            <div class="form-group form-inline">
+                <label for="" class="control-label">文章标题</label>
+                <input type="text" class="form-control" placeholder="请输入文章标题" name="title">
+            </div>
+            <div class="form-group form-inline">
+                <label for="" class="control-label">作者</label>
+                <input type="text" class="form-control" placeholder="请输入作者" name="auther">
+            </div>
+            <div class="form-group form-inline">
+                <label class="control-label">编辑内容</label>
+                <textarea id="" cols="30" rows="6" class="form-control" placeholder="请输入文章内容" name="content"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="edit_box">
+        <form class="" action="/put" method="post" id="form">
+            <div class="form-group form-inline">
+                <label for="" class="control-label">文章标题</label>
+                <input type="text" class="form-control" placeholder="请输入文章标题" name="title">
+            </div>
+            <div class="form-group form-inline">
+                <label for="" class="control-label">作者</label>
+                <input type="text" class="form-control" placeholder="请输入作者" name="auther">
+            </div>
+            <div class="form-group form-inline">
+                <label class="control-label">编辑内容</label>
+                <textarea id="" cols="30" rows="6" class="form-control" placeholder="请输入文章内容" name="content"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="edit_box">
+        <form class="" action="/put" method="post" id="form">
+            <div class="form-group form-inline">
+                <label for="" class="control-label">文章标题</label>
+                <input type="text" class="form-control" placeholder="请输入文章标题" name="title">
+            </div>
+            <div class="form-group form-inline">
+                <label for="" class="control-label">作者</label>
+                <input type="text" class="form-control" placeholder="请输入作者" name="auther">
+            </div>
+            <div class="form-group form-inline">
+                <label class="control-label">编辑内容</label>
+                <textarea id="" cols="30" rows="6" class="form-control" placeholder="请输入文章内容" name="content"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="edit_box">
+        <form class="" action="/put" method="post" id="form">
+            <div class="form-group form-inline">
+                <label for="" class="control-label">文章标题</label>
+                <input type="text" class="form-control" placeholder="请输入文章标题" name="title">
+            </div>
+            <div class="form-group form-inline">
+                <label for="" class="control-label">作者</label>
+                <input type="text" class="form-control" placeholder="请输入作者" name="auther">
+            </div>
+            <div class="form-group form-inline">
+                <label class="control-label">编辑内容</label>
+                <textarea id="" cols="30" rows="6" class="form-control" placeholder="请输入文章内容" name="content"></textarea>
+            </div>
+        </form>
+    </div>
+    <div class="edit_box">
+        <form class="" action="/put" method="post" id="form">
+            <div class="form-group form-inline">
+                <label for="" class="control-label">文章标题</label>
+                <input type="text" class="form-control" placeholder="请输入文章标题" name="title">
+            </div>
+            <div class="form-group form-inline">
+                <label for="" class="control-label">作者</label>
+                <input type="text" class="form-control" placeholder="请输入作者" name="auther">
+            </div>
+            <div class="form-group form-inline">
+                <label class="control-label">编辑内容</label>
+                <textarea id="" cols="30" rows="6" class="form-control" placeholder="请输入文章内容" name="content"></textarea>
+            </div>
+        </form>
+    </div>
+    <ul class="list">
+        <li>0000000000000</li>
+        <li>1111111111111</li>
+        <li>2222222222222</li>
+    </ul>
+</body>
+
+</html>
+<script>
+window.onload=function(){
+    if($("li").length > 0){
+        alert(11)
+    }
+}
+function editFun() {
+    layer.open({
+        type: 1,
+        area: ['450px', '400px'],
+        content: $(".edit_box"),
+        btn: ['保存', '取消'],
+        yes: function() {
+            ajaxFun();
+        }
+    });
+};
+
+function ajaxFun() {
+    var index;
+    $.ajax({
+        url: '/api/login',
+        type: 'get',
+        dataType: 'json',
+        beforeSend: function() {
+            index = layer.load();
+        },
+        success: function(data) {
+            console.log(data.b);
+            layer.close(index);
+        },
+        error: function() {
+            console.log("error")
+        }
+    })
+}
+
+
+// $(".box").html('<li id="CouponInfo">gfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfghgfgfgh</li>');
+// console.log($("#CouponInfo").text())
+
+//工厂模式
+// function factoryPerson(name,job){
+//     var o = new Object();
+//     o.name = name;
+//     o.job = job;
+//     o.sayName = function(){
+//         console.log(this.name);
+//     };
+//     return o;
+// }
+// var person1 = new factoryPerson("zero1","it1");
+// console.log(person1);
+
+// //构造函数模式
+// function Person(name,job){
+//     this.name = name;
+//     this.job = job;
+//     this.sayName = function(){
+//         console.log(this.name);
+//     };
+// };
+// var person2 = new Person("zero2","it2");
+// console.log(person2);
+
+// // //原型模式
+// function ProtoPerson(){
+
+// };
+// ProtoPerson.prototype.name = "zero3";
+// ProtoPerson.prototype.job = "it3";
+// ProtoPerson.prototype.sayName = function(){
+//     console.log(this.name);
+// };
+// var person3 = new ProtoPerson();
+// console.log(person3);
+
+
+// $(".li").each(function(index,ele){
+//     if($(ele).text().trim()==""){
+//         console.log(index)
+//     }
+// })
+
+
+// $(".list li").on("click",function(){
+//     console.log($(this).index())
+// })
+// var list = document.querySelectorAll(".list li");
+// for (var i = 0, len = list.length; i < len; i++) {
+//     // list[i].index=i;
+//     (function(i) {
+//         list[i].onclick = function() {
+//             console.log(i)
+//         }
+//     })(i)
+// }
+// $(".list li").on("click",function(){
+//     callFun($(this),'zero')
+// });
+
+
+
+
+function callFun(name) {
+    var num = 0;
+    var timer = null;
+    timer = setInterval(function() {
+        console.log(this.innerHTML + name)
+        num++;
+        if (num == 5) {
+            clearInterval(timer);
+        }
+    }.bind(this), 300)
+};
+
+var list = document.querySelectorAll(".list li");
+
+for (var i = 0, len = list.length; i < len; i++) {
+    list[i].index = i;
+    list[i].addEventListener('click', function() {
+        callFun.call(this, 'zero')
+    })
+};
+
+
+var reFun = ({
+    a: 1,
+    b: function() {
+        console.log('b');
+        return this;
+    },
+    c: function() {
+        console.log('c');
+        return this;
+    }
+});
+reFun.b().c();
+
+
+
+function switchFun(num){
+    switch(num){
+        case 0:
+        console.log(0);
+        break;
+        case 1:
+        console.log(1);
+        break;
+        case 2:
+        console.log(2);
+        break;
+        default:
+        console.log(666);
+    }
+}
+switchFun(1);
+switchFun(0);
+switchFun(9);
+</script>
