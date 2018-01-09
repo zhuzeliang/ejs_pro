@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -13,12 +14,13 @@ var put = require('./routes/put');
 var api = require('./routes/api');
 var boom = require('./routes/boom');
 var socket = require('./routes/socket');
-
+var img = require('./routes/img');
+var weui = require('./routes/weui');
 // var mongoose = require('mongoose');
 // mongoose.connect('mongodb://localhost:27017/zero');
 
 var app = express();
-
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,6 +35,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// app.all('*', function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+//     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+//     res.header('Access-Control-Allow-Headers', 'Content-Type');
+//     next();
+// });
 app.use('/', index);
 app.use('/users', users);
 app.use('/login', login);
@@ -42,8 +52,10 @@ app.use('/put', put);
 app.use('/api', api);
 app.use('/boom', boom);
 app.use('/socket', socket);
-app.ready=function(server){
-  socket.prepareSocketIO(server);
+app.use('/img', img);
+app.use('/weui', weui);
+app.ready = function(server) {
+    socket.prepareSocketIO(server);
 };
 
 

@@ -12,6 +12,7 @@ var config = {
     appId: 'wx653b6205a201e1d7',
     secret: 'e2543ed127d232cd57a5592ee5cf011f'
 }
+var configStr = JSON.stringify(config)
 
 router.get('/', function(req, res, next) {
     io.on('connection', function(socket) {
@@ -60,9 +61,9 @@ router.get('/', function(req, res, next) {
         return getNewTicket(data);
     }).then(function(data) {
         let jsapi_ticket = data;
-        let str = 'jsapi_ticket=' + jsapi_ticket + '&noncestr=' + noncestr + '&timestamp=' + timestamp + '&url=' + reqData;
+        let str = 'jsapi_ticket=' + jsapi_ticket + '&noncestr=' + noncestr + '&timestamp=' + timestamp + '&url=http://zero.tunnel.echomod.cn/LD/html/index.html';
         signature = crypto.createHash('sha1').update(str).digest('hex');
-        res.render('index', { title: 'Express', noncestr: noncestr, signature: signature, timestamp: timestamp, jsapi_ticket: jsapi_ticket, req:reqData});
+        res.render('index', { title: 'Express', noncestr: noncestr, signature: signature, timestamp: timestamp, jsapi_ticket: jsapi_ticket, req:configStr});
     });
     // var access_token = getToken();
     // var timestamp = getTimesTamp();
